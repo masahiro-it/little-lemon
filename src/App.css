@@ -1,3 +1,4 @@
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;700&family=Karla:wght@400;500;700;800&display=swap');
 
 .App {
@@ -49,16 +50,92 @@
   background-color: #e0b912;
 }
 
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 32px;
+  background-color: #495E57;
+  width: 100%;
+  min-height: 400px;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1;
+  text-align: left;
+  max-width: 50%;
+}
+
+.hero-content h1 {
+  font-family: 'Markazi Text', serif;
+  font-size: 64px; /* Display Title */
+  font-weight: 500; /* Medium */
+  color: #f4ce14; /* Primary Color */
+  margin: 0 0 8px;
+}
+
+.hero-content h2 {
+  font-family: 'Markazi Text', serif;
+  font-size: 40px; /* Sub Title */
+  font-weight: 400; /* Regular */
+  color: #EDEFEE; /* Secondary Color */
+}
+
+.hero-content p {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px; /* Paragraph Text */
+  font-weight: 400; /* Regular */
+  line-height: 1.5;
+  color: #EDEFEE;
+  max-width: 65ch;
+  margin: 0 0 24px;
+}
+
+.hero-content .cta-button {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px; /* Lead Text */
+  font-weight: 500; /* Medium */
+  background-color: #F4CE14; /* Primary COlor */
+  color: #333333;
+  padding: 10px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hero-content .cta-button:hover {
+  background-color: #e0b912;
+}
+
+.hero-image {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  position: relative;
+  transform: translateY(20%);
+}
+
 /* Footer */
 .footer {
   /* background-color: transparent; */
   background-color: #EDEFEE;
   color: #333333;
-  paddin: 40px 32px;
+  padding: 40px 32px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
+
 
 .footer-logo img {
   height: 60px;
@@ -127,6 +204,32 @@
   }
   .nav-list li a {
     font-size: 16px;
+  }
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .hero-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .hero-content h1 {
+    font-size: 48px;
+  }
+  .hero-content h2 {
+    font-size: 32px;
+  }
+  .hero-content p {
+    font-size: 14px;
+  }
+  .hero-image {
+    width: 100%;
+    height: 300px;
   }
   .footer {
     flex-direction: column;
