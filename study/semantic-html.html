@@ -17,3 +17,24 @@
   <meta name="og:title" content="One Place Fishing"/>
   <meta name="og:description" content="some description here"/>
   <meta name="og:image" content="https://example.com/one-place-fishing-store.jpg"/>
+
+  <!-- CSS styling Flexbox vs Grid-->
+   <style>
+    .container {
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 2fr 1fr;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: 2fr 1fr;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-auto-rows: minmax(150px, auto);
+    }
+   </style>

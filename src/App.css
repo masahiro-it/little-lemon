@@ -1,38 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;700&family=Karla:wght@400;500;700;800&display=swap');
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 16px 32px;
+  /* background-color: transparent; */
+  background-color: #EDEFEE;
 }
 
-.App-link {
-  color: #61dafb;
+.logo img {
+  height: 60px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: #333333;
+  font-family: 'Karla', sans-serif;
+  font-size: 18px; /* Lead Text */
+  font-weight: 500; /* Medium */
+  transition: color 0.3s ease;
+}
+
+.nav-list li a.reservations {
+  background-color: #f4ce14;
+  color: #333333;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.nav-list li a:hover {
+  color: #EE9972; /* Secondary color: Coral */
+}
+
+.nav-list li a:reservations:hover {
+  background-color: #e0b912;
+}
+
+/* Footer */
+.footer {
+  /* background-color: transparent; */
+  background-color: #EDEFEE;
+  color: #333333;
+  paddin: 40px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-logo img {
+  height: 60px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.footer-column h3 {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px; /* Section Title */
+  font-weight: 800; /* Extra Bold */
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: #495E57; /* Primary Color: Dark Green */
+}
+
+.footer-nav-list,
+.footer-contact-list,
+.footer-social-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-nav-list li a,
+.footer-social-list li a {
+  text-decoration: none;
+  color: #333333;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px; /* Paragraph Text */
+  font-weight: 400; /* Regular */
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.footer-nav-list li a:hover,
+.footer-social-list li a:hover {
+  color: #f4ce14; /* Primary Color: Yellow */
+}
+
+.footer-contact-list li {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px; /* Paragraph Text */
+  font-weight: 400; /* Regular */
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+/* Responsive page*/
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
   }
-  to {
-    transform: rotate(360deg);
+  .nav-list {
+    flex-direction: column;
+    gap: 15px;
   }
+  .nav-list li a {
+    font-size: 16px;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .footer-logo {
+    margin-bottom: 20px;
+  }
+
 }
