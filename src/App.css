@@ -121,9 +121,106 @@
   height: 400px;
   object-fit: cover;
   border-radius: 16px;
-  position: relative;
-  transform: translateY(20%);
+  /* position: relative;
+  transform: translateY(20%); */
 }
+
+/* Main Section */
+.main {
+  padding: 40px 32px;
+  background-color: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.main-header h2 {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #495E57;
+}
+
+.main-header .cta-button {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #F4CE14;
+  color: #333333;
+  padding: 10px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.main-header .cta-button:hover {
+  background-color: #e0b912;
+}
+
+.menu-cards {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Horizontal scroll */
+  padding-bottom: 10px;
+}
+
+.menu-card {
+  flex: 0 0 300px;
+  background-color: #EDEFEE;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.menu-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+.menu-content {
+  padding: 16px;
+}
+
+.menu-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.menu-title h3 {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+}
+
+.menu-price {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #495E57;
+}
+
+.menu-content p {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #333333;
+  max-width: 65ch;
+  margin: 0;
+}
+
 
 /* Footer */
 .footer {
@@ -230,6 +327,22 @@
   .hero-image {
     width: 100%;
     height: 300px;
+  }
+  .main {
+    padding: 20px;
+  }
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .menu-cards {
+    flex-direction: column;
+    overflow: visible; /* モバイルではスクロール不要 */
+  }
+  .menu-card {
+    flex: 0 0 auto;
+    width: 100%;
   }
   .footer {
     flex-direction: column;
