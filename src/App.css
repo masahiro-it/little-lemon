@@ -5,6 +5,7 @@
   text-align: center;
 }
 
+/* Navigation */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -26,7 +27,8 @@
   padding: 0;
 }
 
-.nav-list li a {
+.nav-list li a,
+.nav-list li [to] {  /* For Link compornent */
   text-decoration: none;
   color: #333333;
   font-family: 'Karla', sans-serif;
@@ -35,18 +37,21 @@
   transition: color 0.3s ease;
 }
 
-.nav-list li a.reservations {
+.nav-list li a.reservations,
+.nav-list li [to].reservations {
   background-color: #f4ce14;
   color: #333333;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
-.nav-list li a:hover {
+.nav-list li a:hover,
+.nav-list li [to]:hover {
   color: #EE9972; /* Secondary color: Coral */
 }
 
-.nav-list li a:reservations:hover {
+.nav-list li a.reservations:hover,
+.nav-list li [to].reservations:hover {
   background-color: #e0b912;
 }
 
@@ -221,6 +226,86 @@
   margin: 0;
 }
 
+/* Booking Page */
+.booking-page {
+  padding: 40px 32px;
+  background-color: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.booking-container {
+  text-align: left;
+}
+
+.booking-container h1 {
+  font-family: 'Markazi Text', serif;
+  font-size: 40px; /* Sub title size */
+  font-weight: 500; /* Medium */
+  color: #495E57;
+  margin: 0 0 16px;
+}
+
+.booking-container p {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #333333;
+  max-width: 65ch;
+  margin: 0 0 24px;
+}
+
+/* Booking Form */
+.booking-form {
+  display: grid;
+  max-width: 300px;
+  gap: 20px;
+  background-color: #EDEFEE;
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.booking-form label {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333333;
+}
+
+.booking-form input,
+.booking-form select {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #495E57;
+  border-radius: 16px;
+  background-color: #fff;
+  color: #333333;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  outline: none;
+  border-color: #F4CE14;
+}
+
+.booking-form input[type="submit"] {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #F4CE14;
+  color: #333333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booking-form input[type="submit"]:hover {
+  background-color: #e0b912;
+}
 
 /* Footer */
 .footer {
@@ -299,13 +384,15 @@
     flex-direction: column;
     gap: 15px;
   }
-  .nav-list li a {
+  .nav-list li a,
+  .nav-list li [to] {
     font-size: 16px;
   }
   .hero {
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
+    min-height: auto;
   }
   .hero-container {
     flex-direction: column;
@@ -338,12 +425,20 @@
   }
   .menu-cards {
     flex-direction: column;
-    overflow: visible; /* モバイルではスクロール不要 */
+    overflow-x: visible; /* モバイルではスクロール不要 */
   }
   .menu-card {
     flex: 0 0 auto;
     width: 100%;
   }
+  .booking-page {
+    padding: 20px;
+  }
+  .booking-form {
+    max-width: 100%;
+    padding: 16px;
+  }
+
   .footer {
     flex-direction: column;
     align-items: flex-start;
@@ -356,5 +451,4 @@
   .footer-logo {
     margin-bottom: 20px;
   }
-
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import heroImage from './images/restauranfood.jpg';
 
 const Header = () => {
@@ -12,9 +13,13 @@ const Header = () => {
                         We are a family owned Mediterranean restaurant, focused on traditional 
                         recipes served with a modern twist.
                     </p>
-                    <a href="/" className="cta-button" aria-label="Reserve a table at Little Lemon">
+                    <Link
+                        to="/booking" 
+                        className="cta-button" 
+                        aria-label="Reserve a table at Little Lemon"
+                    >
                         Reserve a Table
-                    </a>
+                    </Link>
                 </div>
                 <img src={heroImage} alt="Delicious Mediterranean dish" className="hero-image" />
             </div>

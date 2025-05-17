@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import greekSalad from './images/greek salad.jpg';
 import bruschetta from './images/bruchetta.svg';
 import lemonDessert from './images/lemon dessert.jpg';
@@ -38,9 +39,13 @@ const Main = () => {
         <main className="main" role="main" aria-label="Little Lemon specials section">
             <div className="main-header">
                 <h2>This Week's Specials!</h2>
-                <a href="/" className="cta-button" aria-label="View Little Lemon online menu">
+                <Link
+                    to="/menu" 
+                    className="cta-button" 
+                    aria-label="View Little Lemon online menu"
+                >
                     Online Menu
-                </a>
+                </Link>
             </div>
             <div className="menu-cards">
                 {menuItems.map((item) => (
