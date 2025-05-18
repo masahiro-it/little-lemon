@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { BookingContext } from  '../context/BookingContext';
 
-const BookingForm = ({ availableTimes, dispatch }) => {
+const BookingForm = () => {
     // Form field state
+    const { availableTimes, dispatch } = useContext(BookingContext);
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [guests, setGuests] = useState(1);
