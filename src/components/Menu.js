@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import greekSalad from './images/greek salad.jpg';
-import bruschetta from './images/bruchetta.svg';
-import lemonDessert from './images/lemon dessert.jpg';
+import greekSalad from '../images/greek salad.jpg';
+import bruschetta from '../images/bruchetta.svg';
+import lemonDessert from '../images/lemon dessert.jpg';
 
 const menuItems = [
     {
@@ -34,18 +34,16 @@ const menuItems = [
     },
 ];
 
-const Main = () => {
+const Menu = ({ isSpecials = true }) => {
     return (
-        <main className="main" role="main" aria-label="Little Lemon specials section">
-            <div className="main-header">
-                <h2>This Week's Specials!</h2>
-                <Link
-                    to="/menu" 
-                    className="cta-button" 
-                    aria-label="View Little Lemon online menu"
-                >
-                    Online Menu
-                </Link>
+        <section className="menu container" role="region" aria-label="Menu section">
+            <div className="menu-header">
+                <h2>{isSpecials ? `This Week's Specials!` : 'Our Menu'}</h2>
+                {isSpecials && (
+                    <Link to="menu" className="cta-button" aria-label="View Little Lemon online menu">
+                        Online Menu
+                    </Link>
+                )}
             </div>
             <div className="menu-cards">
                 {menuItems.map((item) => (
@@ -61,8 +59,8 @@ const Main = () => {
                     </div>
                 ))}
             </div>
-        </main>
+        </section>
     );
 };
 
-export default Main;
+export default Menu;

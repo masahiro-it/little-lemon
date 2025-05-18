@@ -105,21 +105,6 @@
   margin: 0 0 24px;
 }
 
-.hero-content .cta-button {
-  font-family: 'Karla', sans-serif;
-  font-size: 18px; /* Lead Text */
-  font-weight: 500; /* Medium */
-  background-color: #F4CE14; /* Primary COlor */
-  color: #333333;
-  padding: 10px 20px;
-  border-radius: 16px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.hero-content .cta-button:hover {
-  background-color: #e0b912;
-}
 
 .hero-image {
   width: 300px;
@@ -130,30 +115,16 @@
   transform: translateY(20%); */
 }
 
-/* Main Section */
-.main {
+
+/* 共通コンテナ */
+.container {
   padding: 40px 32px;
   background-color: transparent;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.main-header h2 {
-  font-family: 'Karla', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #495E57;
-}
-
-.main-header .cta-button {
+.cta-button {
   font-family: 'Karla', sans-serif;
   font-size: 18px;
   font-weight: 500;
@@ -164,15 +135,40 @@
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
-
-.main-header .cta-button:hover {
+.cta-button:hover {
   background-color: #e0b912;
+}
+
+/* Main Section */
+.main {
+}
+
+/* Menu Section */
+.menu {
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.menu-header h2 {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #495E57;
+}
+
+.menu-page {
 }
 
 .menu-cards {
   display: flex;
   gap: 20px;
-  overflow-x: auto; /* Horizontal scroll */
+  overflow-x: auto;
   padding-bottom: 10px;
 }
 
@@ -415,17 +411,17 @@
     width: 100%;
     height: 300px;
   }
-  .main {
+    .container {
     padding: 20px;
   }
-  .main-header {
+  .menu-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
   .menu-cards {
     flex-direction: column;
-    overflow-x: visible; /* モバイルではスクロール不要 */
+    overflow-x: visible;
   }
   .menu-card {
     flex: 0 0 auto;
