@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
 
-const BookingForm = () => {
+const BookingForm = ({ availableTimes, dispatch }) => {
     // Form field state
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState('');
 
-    // State for avalable time slot
-    const [availableTimes] = useState([
-        '17:00',
-        '18:00',
-        '19:00',
-        '20:00',
-        '21:00',
-        '22:00',
-    ]);
+    const handleDateChange = (e) => {
+        setDate(e.target.value);
+        dispatch({ type: 'UPDATE_TIMES', payload: e.target.value })
+    };
 
     // Form submit handler
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Reservation:', { date, time, guests, occasion });
-        // Implement API communication in future
     };
 
     return (
@@ -36,7 +30,7 @@ const BookingForm = () => {
                 type="date"
                 id="res-date"
                 value={date}
-                onChange={(e) => setDate(e.target.value)}
+                onChange={handleDateChange}
                 required
                 aria-label="Reservation date" 
             />
