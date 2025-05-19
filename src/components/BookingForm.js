@@ -17,7 +17,13 @@ const BookingForm = () => {
     // Form submit handler
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Reservation:', { date, time, guests, occasion });
+        const formData = { date, time, guests, occasion};
+        const success = window.submitAPI(formData); // call API
+        if (success) {
+            console.log('Reservation submitted successfully:', formData);
+        } else {
+            console.error('Reservation submission failed:', formData);
+        }
     };
 
     return (
