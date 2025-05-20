@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Menu from './Menu';
 import BookingPage from './BookingPage';
+import ConfirmedBooking from './ConfirmedBooking';
 import MenuPage from './MenuPage';
 import AboutPage from './AboutPage';
 import OrderOnlinePage from './OrderOnlinePage';
 import LoginPage from './LoginPage';
 import { BookingProvider } from '../context/BookingContext'
-
 
 
 const Main = () => {
@@ -26,6 +26,7 @@ const Main = () => {
                         }
                     />
                     <Route path="/booking" element={<BookingPage />} />
+                    <Route path="confirmed" element={<ConfirmedBooking />} />
                     <Route path="/menu" element={<MenuPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/order-online" element={<OrderOnlinePage />} />

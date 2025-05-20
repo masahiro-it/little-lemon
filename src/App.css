@@ -369,6 +369,78 @@
   color: #333333;
 }
 
+/* ConfirmedBooking */
+.confirmed-booking {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.confirmation-container {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rbga(0, 0, 0, 0.1);
+}
+
+.confirmation-container h1 {
+  font-family: 'Karla', sans-serif;
+  font-size: 32px;
+  color: #495E57;
+  margin-bottom: 16px;
+}
+
+.confirmation-container p {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.reservation-details {
+  margin: 24px 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reservation-details p {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 8px 0;
+}
+
+.reservation-details p strong {
+  font-weight: 700;
+  color: #495E57;
+  margin-right: 8px;
+}
+
+.error {
+  color: #d32f2f;
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"] {
+  border-color: #d32f2f;
+  background-color: #fff5f5;
+}
+
+.cta-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Responsive page*/
 @media (max-width: 600px) {
   .nav {
@@ -446,5 +518,30 @@
   }
   .footer-logo {
     margin-bottom: 20px;
+  }
+
+  .confirmed-booking {
+    padding: 24px 0;
+  }
+
+  .confirmation-container {
+    padding: 24px;
+  }
+
+  .confirmation-container h1 {
+    font-size: 24px;
+  }
+
+  .confirmation-container p {
+    font-size: 16px;
+  }
+
+  .reservation-details {
+    padding: 12px;
+    max-width: 100%
+  }
+
+  .reservation-details p {
+    font-size: 14px;
   }
 }

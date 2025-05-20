@@ -1,4 +1,5 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Create BookingContext
 export const BookingContext = createContext();
@@ -25,8 +26,21 @@ export const updateTimes = (state, action) => {
 // BookingProvider component
 export const BookingProvider = ({ children }) => {
     const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
+    const [lastReservation, setLastReservation] = useState(null);
+    const navigate = useNavigate();
+    const submitForm = (formData) => {
+        const success = window.submitAPI(formData);
+        if (success) {
+            console.log('Reservatrion submitted successfully:', formData);
+            setLastReservation(formData);
+            navigate('/confirmed');
+            return true;
+        } else {
+            return false;
+        }
+    };
     return (
-        <BookingContext.Provider value={{ availableTimes, dispatch }}>
+        <BookingContext.Provider value={{ availableTimes, dispatch, submitForm, lastReservation }}>
             {children}
         </BookingContext.Provider>
     );
