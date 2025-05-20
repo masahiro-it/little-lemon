@@ -380,6 +380,7 @@
   padding: 32px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rbga(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .confirmation-container h1 {
@@ -394,6 +395,45 @@
   font-size: 18px;
   color: #333;
   margin-bottom: 24px;
+}
+
+.confirmation-logo {
+  max-width: 150px;
+  margin-bottom: 16px;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.cta-button.secondary {
+  background-color: #495E57;
+  color: #fff;
+}
+
+.cta-button.secondary:hover {
+  background-color: #3e4e46;
 }
 
 .reservation-details {
@@ -543,5 +583,14 @@
 
   .reservation-details p {
     font-size: 14px;
+  }
+
+  .confirmation-logo {
+    max-width: 120px;
+  }
+
+  .confirmation-actions {
+    flex-direction: column;
+    gap: 12px;
   }
 }

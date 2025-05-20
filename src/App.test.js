@@ -3,16 +3,6 @@ import BookingPage from './components/BookingPage';
 import BookingForm from './components/BookingPage';
 import { BookingProvider, BookingContext } from './context/BookingContext';
 
-// test('Renders the BookingPage heading', () => {
-//   render(
-//     <BookingProvider>
-//       <BookingPage />
-//     </BookingProvider>
-//   );
-//   const headingElement = screen.getByText(/Reserve a Table/i);
-//   // Reserve a Tableの見出し（<h1>）がDOMに存在することを確認
-//   expect(headingElement).toBeInTheDocument(); // 要素がDOMに存在するかを確認
-// });
 
 // Test for BookigPage
 describe('BookingPage', () => {
@@ -109,7 +99,4 @@ describe('BookingForm', () => {
   });
 });
 
-
-// .toBeInTheDocument(); // 要素がDOMに存在するかを確認
-// Jestの詳細出力を確認（npm test -- --verbose）
 

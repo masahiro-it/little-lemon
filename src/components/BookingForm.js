@@ -48,14 +48,14 @@ const BookingForm = () => {
     };
 
     
-    // handleChage: インプットへの入力の検知,changeの時のみ、メッセージを表示するために使う。
-    // submitの時には使わない
-    // 各ステートの値をアップデート
+    // onChange handler
+    // update each state's value
     const handleChange = (name, value, setter) => {
         setter(value);
         validateField(name, value);
     };
 
+    // onChange handler for date input
     const handleDateChange = (e) => {
         const newDate = e.target.value;
         setDate(newDate);

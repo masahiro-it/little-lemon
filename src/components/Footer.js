@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../images/Logo.svg';
 
 const Footer = () => {
@@ -11,12 +12,36 @@ const Footer = () => {
                 <div className="footer-column">
                     <h3>Doormat Navigation</h3>
                     <ul className="footer-nav-list">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/">About</a></li>
-                        <li><a href="/">Menu</a></li>
-                        <li><a href="/">Reservations</a></li>
-                        <li><a href="/">Order Online</a></li>
-                        <li><a href="/">Login</a></li>
+                        <li><Link to="/" aria-label="Go to home page">
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/about" aria-label="Go to about page">
+                                About
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/menu" aria-label="Go to menu page">
+                                Menu
+                            </Link>
+
+                        </li>
+                        <li>
+                            <Link to="/booking" aria-label="Go to reservation page">
+                                Reservations
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/order-online" aria-label="Go to order online pgae">
+                                Order Online
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/login" aria-label="Go to login page">
+                                Login
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="footer-column">
