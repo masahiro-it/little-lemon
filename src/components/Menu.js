@@ -36,7 +36,7 @@ const menuItems = [
 
 const Menu = ({ isSpecials = true }) => {
     return (
-        <section className="menu container" role="region" aria-label="Menu section">
+        <section className="menu container"  aria-label="Menu section">
             <div className="menu-header">
                 <h2>{isSpecials ? `This Week's Specials!` : 'Our Menu'}</h2>
                 {isSpecials && (

@@ -3,7 +3,7 @@ import Menu from './Menu';
 
 const MenuPage = () => {
     return (
-        <section className="menu-page container" role="region" aria-label="Full menu page">
+        <section className="menu-page container"  aria-label="Full menu page">
             <Menu isSpecials={false} />
         </section>
     );

@@ -7,7 +7,7 @@ import Logo from '../images/Logo.svg';
 const ConfirmedBooking = () => {
     const { lastReservation } = useContext(BookingContext);
     return (
-        <section className="confirmed-booking container" role="region" aria-label="Booking confirmation">
+        <section className="confirmed-booking container" aria-label="Booking confirmation">
             <div className="confirmation-container">
                 <img src={Logo} alt="Little Lemon logo" className="confirmation-logo" />
                 <h1 className="fade-in">Reservation Confirmed!</h1>

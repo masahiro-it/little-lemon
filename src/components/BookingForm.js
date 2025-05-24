@@ -89,7 +89,6 @@ const BookingForm = () => {
         <form
             className="booking-form"
             onSubmit={handleSubmit}
-            role="form"
             aria-label="Table reservation form"
             noValidate // for custom error message
         >
