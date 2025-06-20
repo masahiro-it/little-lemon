@@ -1,5 +1,5 @@
-import  * as React from 'react';
-import { NavigationContainer} from '@react-navigation/native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OnboardingScreen from './screens/Onboarding';
@@ -15,28 +15,26 @@ export default function App() {
   });
 
   React.useEffect(() => {
-    // AsyncStorageからオンボーディング完了フラグを読み込む
     const loadOnboardingState = async () => {
       try {
         const value = await AsyncStorage.getItem('isOnboardingCompleted');
         if (value !== null) {
           setState({ isLoading: false, isOnboardingCompleted: JSON.parse(value) });
         } else {
-          setState({ isLoading: false, isOnboardingCompleted: false })
+          setState({ isLoading: false, isOnboardingCompleted: false });
         }
       } catch (error) {
         console.log('Error loading onboarding state:', error);
-        setState({ isLoading: false, isOnboardingCompleted: false })
+        setState({ isLoading: false, isOnboardingCompleted: false });
       }
     };
-
     loadOnboardingState();
   }, []);
 
-  // オンボーディング完了時にAsyncStorageに保存
-  const completeOnboarding = async () => {
+  const completeOnboarding = async (firstName, email) => {
     try {
       await AsyncStorage.setItem('isOnboardingCompleted', JSON.stringify(true));
+      await AsyncStorage.setItem('profileData', JSON.stringify({ firstName, email }));
       setState((prevState) => ({ ...prevState, isOnboardingCompleted: true }));
     } catch (error) {
       console.log('Error saving onboarding state:', error);
@@ -44,7 +42,6 @@ export default function App() {
   };
 
   if (state.isLoading) {
-    // AsyncStorageの読み込みが完了するまでスプラッシュスクリーンを表示
     return <SplashScreen />;
   }
 
@@ -52,19 +49,19 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {state.isOnboardingCompleted ? (
-          // オンボーディング完了、 Profile画面に移動
-          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
+            initialParams={{ setState, saveChanges: completeOnboarding }} // setStateを渡す
+          />
         ) : (
-          // オンボーディング未完了、Onboarding画面を表示
           <Stack.Screen
             name="Onboarding"
             component={OnboardingScreen}
-            initialParams={{ completeOnboarding }} // completeOnboarding関数を返す
+            initialParams={{ completeOnboarding, firstName: '', email: '' }}
           />
         )}
       </Stack.Navigator>
     </NavigationContainer>
-  )
-
-
+  );
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
-const Onboarding = ({ navigation, route }) => {
+const Onboarding = ({navigation, route }) => {
     const { completeOnboarding } = route.params || {}; // App.jsから渡された関数
 
     const [firstName, setFirstName] = React.useState("");
@@ -18,11 +18,18 @@ const Onboarding = ({ navigation, route }) => {
         return isFirstNameValid && isEmailValid;
     }
 
+    // const handleNextPress = () => {
+    //     if (completeOnboarding) {
+    //         completeOnboarding(); // オンボーディング完了を保存
+    //     }
+    // }
     const handleNextPress = () => {
         if (completeOnboarding) {
-            completeOnboarding(); // オンボーディング完了を保存
+          completeOnboarding(firstName, email); // firstNameとemailを渡す
         }
-    }
+    };
+
+    
 
     return (
         <View style={styles.container}>
