@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OnboardingScreen from './screens/Onboarding';
 import ProfileScreen from './screens/Profile';
+import HomeScreen from './screens/Home';
 import SplashScreen from './screens/SplashScreen';
 
 const Stack = createNativeStackNavigator();
@@ -31,10 +32,12 @@ export default function App() {
     loadOnboardingState();
   }, []);
 
-  const completeOnboarding = async (firstName, email) => {
+  const completeOnboarding = async (firstName, email, lastName) => { // lastNameを追加
     try {
+      const profileData = { firstName, lastName, email, avatarSource: null, notifications: { orderStatuses: true, passwordChanges: true, specialOffers: true, newsletter: true } };
+      console.log('Saving profileData:', JSON.stringify(profileData));
       await AsyncStorage.setItem('isOnboardingCompleted', JSON.stringify(true));
-      await AsyncStorage.setItem('profileData', JSON.stringify({ firstName, email }));
+      await AsyncStorage.setItem('profileData', JSON.stringify(profileData));
       setState((prevState) => ({ ...prevState, isOnboardingCompleted: true }));
     } catch (error) {
       console.log('Error saving onboarding state:', error);
@@ -49,16 +52,23 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {state.isOnboardingCompleted ? (
-          <Stack.Screen
-            name="Profile"
-            component={ProfileScreen}
-            initialParams={{ setState, saveChanges: completeOnboarding }} // setStateを渡す
-          />
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              initialParams={{ setState, saveChanges: completeOnboarding }}
+            />
+            <Stack.Screen
+              name="Profile"
+              component={ProfileScreen}
+              initialParams={{ setState, saveChanges: completeOnboarding }}
+            />
+          </>
         ) : (
           <Stack.Screen
             name="Onboarding"
             component={OnboardingScreen}
-            initialParams={{ completeOnboarding, firstName: '', email: '' }}
+            initialParams={{ completeOnboarding, firstName: '', email: '', lastName: '' }}
           />
         )}
       </Stack.Navigator>

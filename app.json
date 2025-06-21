@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "little-lemon",
-    "slug": "little-lemon",
+    "name": "little-lemon-capstone",
+    "slug": "snack-6074be22-6e06-4c69-8bd8-66ec08fed8e8",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,9 +24,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-sqlite"
-    ]
+    }
   }
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as ImagePicker from 'expo-image-picker'; // 修正済みのインポート
 
 const Profile = ({ navigation, route }) => {
-  const { setState, saveChanges } = route.params || {}; // App.jsから渡された関数
-  const [avatarSource, setAvatarSource] = useState(require('../assets/Profile.png')); // 初期アバター
-  const [initialAvatarSource, setInitialAvatarSource] = useState(require('../assets/Profile.png')); // 初期アバター保存
+  const { setState, saveChanges } = route.params || {};
+  const [avatarSource, setAvatarSource] = useState(null); // 初期アバターをnullに
+  const [initialAvatarSource, setInitialAvatarSource] = useState(null); // 初期アバター保存
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -32,8 +33,15 @@ const Profile = ({ navigation, route }) => {
         setLastName(parsedData.lastName || '');
         setEmail(parsedData.email || '');
         setPhone(parsedData.phone || '');
-        setAvatarSource(parsedData.avatarSource || require('../assets/Profile.png')); // アバター画像をロード
-        setInitialAvatarSource(parsedData.avatarSource || require('../assets/Profile.png')); // 初期値保存
+        // アバター画像をURIとしてロード
+        const savedAvatar = parsedData.avatarSource;
+        if (savedAvatar) {
+          setAvatarSource({ uri: savedAvatar });
+          setInitialAvatarSource({ uri: savedAvatar });
+        } else {
+          setAvatarSource(null); // 画像がない場合プレースホルダー用
+          setInitialAvatarSource(null);
+        }
         setNotifications(parsedData.notifications || {
           orderStatuses: true,
           passwordChanges: true,
@@ -51,25 +59,41 @@ const Profile = ({ navigation, route }) => {
     loadProfileData();
   }, []);
 
-  const handleChangeAvatar = () => {
-    console.log('Change avatar pressed');
+  // 画像ピッカーを起動
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission denied', 'Sorry, we need camera roll permissions to make this work!');
+      return;
+    }
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setAvatarSource(result.assets[0].uri); // アバターとヘッダーの両方を更新
+    }
   };
 
   const handleRemoveAvatar = () => {
-    setAvatarSource(require('../assets/default-avatar.png'));
+    setAvatarSource(null); // プレースホルダーに戻す
     console.log('Remove avatar pressed');
   };
 
   const saveProfileChanges = async () => {
     if (saveChanges) {
-      await saveChanges(firstName, email); // isOnboardingCompletedを維持
+      await saveChanges(firstName, email);
     }
     const profileData = {
       firstName,
       lastName,
       email,
       phone,
-      avatarSource, // アバター画像を保存
+      avatarSource: avatarSource?.uri || null, // 画像URIを保存
       notifications,
     };
     try {
@@ -87,7 +111,6 @@ const Profile = ({ navigation, route }) => {
     setEmail('');
     setPhone('');
     setNotifications(initialNotifications); // 初期通知設定に戻す
-    // AsyncStorageからロードされた初期値を復元
   };
 
   const logout = async () => {
@@ -106,6 +129,13 @@ const Profile = ({ navigation, route }) => {
     }
   };
 
+  // プレースホルダー用テキスト生成
+  const getPlaceholderText = () => {
+    const firstChar = firstName.charAt(0).toUpperCase();
+    const lastChar = lastName.charAt(0).toUpperCase();
+    return firstChar + lastChar || '??'; // 名前が空の場合は'??'
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -113,7 +143,13 @@ const Profile = ({ navigation, route }) => {
           <Text style={styles.backButtonText}>←</Text>
         </TouchableOpacity>
         <Image source={require('../assets/Logo.png')} style={styles.logo} />
-        <Image source={require('../assets/Profile.png')} style={styles.profileImage} />
+        {avatarSource ? (
+          <Image source={avatarSource} style={styles.profileImage} />
+        ) : (
+          <View style={styles.profileImagePlaceholder}>
+            <Text style={styles.placeholderText}>{getPlaceholderText()}</Text>
+          </View>
+        )}
       </View>
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.infoSection}>
@@ -121,8 +157,14 @@ const Profile = ({ navigation, route }) => {
           <View style={styles.avatarSection}>
             <Text style={styles.label}>Avatar</Text>
             <View style={styles.avatarRow}>
-              <Image source={avatarSource} style={styles.avatar} />
-              <TouchableOpacity style={styles.changeButton} onPress={handleChangeAvatar}>
+              {avatarSource ? (
+                <Image source={avatarSource} style={styles.avatar} />
+              ) : (
+                <View style={styles.avatarPlaceholder}>
+                  <Text style={styles.placeholderText}>{getPlaceholderText()}</Text>
+                </View>
+              )}
+              <TouchableOpacity style={styles.changeButton} onPress={pickImage}>
                 <Text style={styles.buttonText}>Change</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.removeButton} onPress={handleRemoveAvatar}>
@@ -233,8 +275,16 @@ const styles = StyleSheet.create({
   profileImage: {
     width: 50,
     height: 50,
-    resizeMode: 'contain',
     borderRadius: 25,
+    resizeMode: 'contain',
+  },
+  profileImagePlaceholder: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#EDEFEE',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollContainer: {
     flex: 1,
@@ -270,6 +320,21 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     marginRight: 15,
+  },
+  avatarPlaceholder: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#EDEFEE',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  placeholderText: {
+    fontFamily: 'Karla',
+    fontSize: 32,
+    color: '#495E57',
+    fontWeight: 'bold',
   },
   changeButton: {
     backgroundColor: '#495E57',
@@ -363,7 +428,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   discardButton: {
-    backgroundColor: '#a9a9a9', // 灰色
+    backgroundColor: '#a9a9a9',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 5,
@@ -372,7 +437,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   saveButton: {
-    backgroundColor: '#495E57', // 緑色
+    backgroundColor: '#495E57',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 5,
